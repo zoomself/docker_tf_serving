@@ -1,0 +1,9 @@
+docker 部署多个模型：（需要添加配置文件）
+详情请见：models.config:
+docker run -t --rm -p 8501:8501 \
+    -v "/tmp/tf_serving/saved_model_sample:/models/sample" \
+    -v "/tmp/tf_serving/saved_model_mnist:/models/mnist" \
+    -v "/tmp/tf_serving/models.config:/models/models.config" \
+    tensorflow/serving \
+    --model_config_file=/models/models.config \
+    --model_config_file_poll_wait_seconds=60
